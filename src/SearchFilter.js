@@ -28,15 +28,6 @@ class SearchFilter extends Component {
   sortBy = () => {
     var e = document.getElementById("sortfilter");
     var selected = e.options[e.selectedIndex].value;
-
-    // fetch(`https://rickandmortyapi.com/api/character?sort=${selected}`)
-    // .then(res => res.json())
-    // .then((data) => {
-    //   this.setState({
-    //     filteredData: data.results,
-    //   })
-    // })
-    // .catch(console.log)
     if (selected === "asc") {
       let filteredData = [...this.state.filteredData];
       filteredData.sort(function (a, b) {
@@ -63,30 +54,39 @@ class SearchFilter extends Component {
       .catch(console.log)
   }
 
-  filterGender = gender => {
-    fetch(`https://rickandmortyapi.com/api/character?gender=${gender}`)
-      .then(res => res.json())
-      .then((data) => {
-        this.setState({
-          filteredData: data.results,
-        })
-      })
-      .catch(console.log)
-  }
-
-  filterSpecies = species => {
-    fetch(`https://rickandmortyapi.com/api/character?species=${species}`)
-      .then(res => res.json())
-      .then((data) => {
-        this.setState({
-          filteredData: data.results,
-        })
-      })
-      .catch(console.log)
-  }
-
-  filterOrigin = origin => {
-    fetch(`https://rickandmortyapi.com/api/character?origin.name=${origin}`)
+  filterData = () => {
+    var gender1 = document.getElementsByName('gender');
+    var gender = "";
+    for (let i = 0; i < gender1.length; i++) {
+      if (gender1[i].checked === true) {
+        gender = gender1[i].value;
+        break;
+      } else {
+        gender = ""
+      }
+    }
+    var status1 = document.getElementsByName('status');
+    var status = "";
+    for (let i = 0; i < status1.length; i++) {
+      if (status1[i].checked === true) {
+        status = status1[i].value;
+        break;
+      } else {
+        status = ""
+      }
+    }
+    var species1 = document.getElementsByName('species');
+    var species = "";
+    for (let i = 0; i < species1.length; i++) {
+      if (species1[i].checked === true) {
+        species = species1[i].value;
+        break;
+      } else {
+        species = ""
+      }
+    } 
+    
+    fetch(`https://rickandmortyapi.com/api/character?gender=${gender}&status=${status}&species=${species}`)
       .then(res => res.json())
       .then((data) => {
         this.setState({
@@ -142,46 +142,42 @@ class SearchFilter extends Component {
           <h3>Species:</h3>
           <div className="fakeimg" >
             <div>
-              <input type="radio" id="Human" name="species" value="Human" onClick={() => this.filterSpecies("Human")}/>
+              <input type="radio" id="Human" name="species" value="Human" onClick={() => this.filterData()}/>
               <label htmlFor="Human">Human</label>
             </div>
             <div>
-              <input type="radio" id="Mytholog" name="species" value="Mytholog" onClick={() => this.filterSpecies("Mytholog")}/>
+              <input type="radio" id="Mytholog" name="species" value="Mytholog" onClick={() => this.filterData()}/>
               <label htmlFor="Mytholog">Mytholog</label>
             </div>
             <div>
-              <input type="radio" id="Other" name="species" value="Other" onClick={() => this.filterSpecies("Other Species")}/>
-              <label htmlFor="Other">Other Species</label>
+              <input type="radio" id="Alien" name="species" value="Alien" onClick={() => this.filterData()}/>
+              <label htmlFor="Alien">Alien</label>
             </div>
           </div>
           <h3>Gender:</h3>
           <div className="fakeimg" >
             <div>
-              <input type="radio" id="male" name="gender" value="male" onClick={() => this.filterGender("Male")}/>
-              <label htmlFor="male">Male</label>
+              <input type="radio" id="male" name="gender" value="Male" onClick={() => this.filterData()}/>
+              <label htmlFor="Male">Male</label>
             </div>
             <div>
-              <input type="radio" id="female" name="gender" value="female" onClick={() => this.filterGender("Female")}/>
-              <label htmlFor="female">Female</label>
+              <input type="radio" id="Female" name="gender" value="Female" onClick={() => this.filterData()}/>
+              <label htmlFor="Female">Female</label>
             </div>
           </div>
-          <h3>Origin:</h3>
+          <h3>Status:</h3>
           <div className="fakeimg" >
             <div>
-              <input type="radio" id="Unknown" name="origin" value="Unknown" onClick={() => this.filterOrigin("Unknown")}/>
-              <label htmlFor="Unknown">Unknown</label>
+              <input type="radio" id="alive" name="status" value="alive" onClick={() => this.filterData()}/>
+              <label htmlFor="alive">Alive</label>
             </div>
             <div>
-              <input type="radio" id="Post-Apocalyptic" name="origin" value="Post-Apocalyptic Earth" onClick={() => this.filterOrigin("Post-Apocalyptic Earth")}/>
-              <label htmlFor="Post-Apocalyptic">Post-Apocalyptic Earth</label>
+              <input type="radio" id="dead" name="status" value="dead" onClick={() => this.filterData()}/>
+              <label htmlFor="dead">Dead</label>
             </div>
             <div>
-              <input type="radio" id="Nuptia4" name="origin" value="Nuptia4" onClick={() => this.filterOrigin("Nuptia4")}/>
-              <label htmlFor="Nuptia4">Nuptia4</label>
-            </div>
-            <div>
-              <input type="radio" id="OtherOrigin" name="origin" value="Other Origin" onClick={() => this.filterOrigin("Other Origin")}/>
-              <label htmlFor="OtherOrigin">Other Origin</label>
+              <input type="radio" id="unknown" name="status" value="unknown" onClick={() => this.filterData()}/>
+              <label htmlFor="unknown">Unknown</label>
             </div>
           </div>
         </div>
