@@ -99,34 +99,34 @@ class SearchFilter extends Component {
   render() {
     const { filteredData } = this.state;
     const persons = filteredData.map((item, i) => (
-      <article className="characterCard__Wrapper-sc-1ejywvi-0 lkWhZH" key={(item.id).toString()}>
-        <div className="characterCard__ImgWrapper-sc-1ejywvi-1 eUyUcB">
+      <article className="id-data" key={(item.id).toString()}>
+        <div className="block-data">
           <div className="card-image">
             <img src={item.image} alt="Crab Spider"></img>
           </div>
-          <div className="characterCard__Title-sc-1ejywvi-3 dfWCUu">
-            <h2 className="characterCard__Name-sc-1ejywvi-4 ieUvkm">{item.name}</h2>
-            <p className="characterCard__Description-sc-1ejywvi-5 dSyDU">id: {item.id} - created 2 years ago</p>
+          <div className="name-block">
+            <h2 className="name-data">{item.name}</h2>
+            <p className="name-id">id: {item.id} - created 2 years ago</p>
           </div>
         </div>
-        <div className="characterCard__InfoWrapper-sc-1ejywvi-2 XgbIp">
-          <div className="characterCard__TextWrapper-sc-1ejywvi-6 kYFLaT">
+        <div className="detail-list">
+          <div className="status-data">
             <span>STATUS</span>
             <p>{item.status}</p>
           </div>
-          <div className="characterCard__TextWrapper-sc-1ejywvi-6 kYFLaT">
+          <div className="status-data">
             <span>SPECIES</span>
             <p>{item.species}</p>
           </div>
-          <div className="characterCard__TextWrapper-sc-1ejywvi-6 kYFLaT">
+          <div className="status-data">
             <span>GENDER</span>
             <p>{item.gender}</p>
           </div>
-          <div className="characterCard__TextWrapper-sc-1ejywvi-6 kYFLaT">
+          <div className="status-data">
             <span>ORIGIN</span>
             <p>{item.origin.name}</p>
           </div>
-          <div className="characterCard__TextWrapper-sc-1ejywvi-6 jCIRLJ">
+          <div className="location-data">
             <span>LAST LOCATION</span>
             <p>{item.location.name}</p>
           </div>
